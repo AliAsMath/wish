@@ -128,7 +128,7 @@ export async function getStaticProps(context) {
     props: {
       usersList,
     },
-    revalidate: 60,
+    revalidate: 10,
   };
 }
 

@@ -53,6 +53,6 @@ export async function getStaticProps(context) {
     props: {
       countriesList,
     },
-    revalidate: 60,
+    revalidate: 10,
   };
 }

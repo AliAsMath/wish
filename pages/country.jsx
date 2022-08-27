@@ -58,7 +58,6 @@ const Country = ({ countriesList }) => {
   };
 
   const addCountryHandler = async () => {
-    setIsLoading(true);
     const result = addCountryValidation({ country });
     if (result.error) {
       setError({
@@ -69,6 +68,7 @@ const Country = ({ countriesList }) => {
     }
     setError({});
 
+    setIsLoading(true);
     try {
       await createCountry({ name: country });
       const allCountries = (await getAllCountries()).data;
@@ -198,7 +198,7 @@ export async function getStaticProps(context) {
     props: {
       countriesList,
     },
-    revalidate: 60,
+    revalidate: 10,
   };
 }
 

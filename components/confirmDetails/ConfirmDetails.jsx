@@ -18,7 +18,6 @@ const ConfirmDetails = ({ nextSlide, prevSlide }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const confirmHandler = async () => {
-    setIsLoading(true);
     const result = PersonalDataValidation(personalState);
     if (result.error) {
       setError({
@@ -28,6 +27,7 @@ const ConfirmDetails = ({ nextSlide, prevSlide }) => {
       return;
     }
 
+    setIsLoading(true);
     try {
       setError({});
       await createUser({
