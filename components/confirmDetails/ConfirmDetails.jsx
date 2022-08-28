@@ -44,7 +44,12 @@ const ConfirmDetails = ({ nextSlide, prevSlide }) => {
         })
       );
     } catch (err) {
-      dispatch(alertActions.setAlert({ message: err.message, type: "error" }));
+      dispatch(
+        alertActions.setAlert({
+          message: err.response.data.message || err.message,
+          type: "error",
+        })
+      );
     }
     setIsLoading(false);
   };

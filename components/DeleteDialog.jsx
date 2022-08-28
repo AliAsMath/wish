@@ -9,10 +9,13 @@ import { CircularProgress, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { deleteCountry, getAllCountries } from "../util/api";
 import { changeDateFormat } from "../util/date";
+import { alertActions } from "../redux/slice/alert";
+import { useDispatch } from "react-redux";
 
-export default function DeleteDialog({ id, setCountriesList }) {
+export default function DeleteDialog({ id, name, setCountriesList }) {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -32,8 +35,19 @@ export default function DeleteDialog({ id, setCountriesList }) {
       });
       setCountriesList(allCountries);
       handleClose();
+      dispatch(
+        alertActions.setAlert({
+          message: `Country "${name}" deleted`,
+          type: "success",
+        })
+      );
     } catch (error) {
-      console.log(error);
+      dispatch(
+        alertActions.setAlert({
+          message: err.response.data.message || err.message,
+          type: "error",
+        })
+      );
     }
     setIsLoading(false);
   };
