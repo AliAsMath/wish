@@ -85,7 +85,7 @@ const Country = ({ countriesList }) => {
     } catch (err) {
       dispatch(
         alertActions.setAlert({
-          message: err.response.data.message || err.message,
+          message: err.response?.data?.message || err.message,
           type: "error",
         })
       );

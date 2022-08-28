@@ -44,7 +44,7 @@ export default function DeleteDialog({ id, name, setCountriesList }) {
     } catch (error) {
       dispatch(
         alertActions.setAlert({
-          message: err.response.data.message || err.message,
+          message: err.response?.data?.message || err.message,
           type: "error",
         })
       );
